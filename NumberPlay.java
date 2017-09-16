@@ -1,6 +1,6 @@
 import java.util.Random;
 
-class ArrayPlay {
+class NumberPlay {
 	public static void main(String[] args) {
 		
 		NumberGen numGen = new NumberGen(4, 44);
