@@ -1,3 +1,5 @@
+package NumberPlay;
+
 import java.util.Random;
 
 class NumberPlay {
@@ -7,10 +9,15 @@ class NumberPlay {
 		/* for (int i = 0; i < 50; i++) {
 			System.out.println("Random number: "+ numGen.nextRand());
 		}	 */
-		int[] myArr = createArray(500, numGen);	
+		int[] myArr = createArray(50, numGen);
 
 		for (int num : myArr) {
-			System.out.println(num);
+			System.out.print(num+ " ");
+		}
+		System.out.println("\nAnd this is a sorted array: ");
+		int[] sortedArr = NumberGen.bubbleSort(myArr);
+		for (int num : sortedArr) {
+			System.out.print(num+ " ");
 		}
 	}
 	
@@ -18,13 +25,15 @@ class NumberPlay {
 		int [] myArray= new int[howMany];
 		
 		for (int i =0; i < howMany; i++) {
-			myArray[i] = numGen.nextRand();
+			int newNum = numGen.nextRand();
+			if (i > 0) {
+				while (newNum != myArray[i - 1]) {
+					myArray[i] = newNum;
+				}
+			}
 		}
 		return myArray;
 	}
-	
-	
-	
 }
 
 class NumberGen {
@@ -54,6 +63,22 @@ class NumberGen {
 	public int nextRand() {
 		return randInt(min, max);
 	}
-	
+
+	public static int[] bubbleSort(int[] arr) {
+
+		int n = arr.length;
+		int temp = 0;
+		for (int i=0; i < n; i++) {
+			for (int j = 1; j < (n-1); j++) {
+				if(arr[j-1] > arr[j]) {
+					//swap elements
+					temp = arr[j-1];
+					arr[j-1] = arr[j];
+					arr[j] = temp;
+				}
+			}
+		}
+		return arr;
+	}
 }
 
